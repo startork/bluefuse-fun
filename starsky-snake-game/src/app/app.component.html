@@ -1,0 +1,27 @@
+<main class="main">
+  <div class="title">
+    <h1>Welcome to the Snake Game</h1>
+    <span>Created by Starsky Torchia</span>
+  </div>
+
+  <p *ngIf="showLost">You actually suck bro!</p>
+
+  <div class="game-wrapper">
+    <div class="game-info-container">
+      <button [disabled]="gameStarted" (click)="startGame()">Start game</button>
+      <button [disabled]="!gameStarted" (click)="startGame()">
+        Restart game
+      </button>
+      <span>Current score: {{ currentScore }}</span>
+      <span>High score: {{ highScore }}</span>
+      <span>Level: <select [(ngModel)]="tickSpeed">
+        <option *ngFor="let l of levels" [value]="l.speed">
+          {{ l.key }}
+        </option>
+      </select></span>
+    </div>
+    <canvas #snakeCage width="700" height="500"></canvas>
+  </div>
+</main>
+
+<router-outlet></router-outlet>
